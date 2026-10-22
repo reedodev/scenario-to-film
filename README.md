@@ -32,6 +32,10 @@
 | 관문 | 사용자가 "좋다"고 해야 다음으로 넘어가는 멈춤 지점입니다. 시안을 본 뒤가 관문 1, 비용표를 본 뒤가 관문 2입니다 |
 | 크레딧 | 영상 서비스가 받는 사용 단위(돈)입니다 |
 | 지시문(프롬프트) | AI에게 무엇을 만들지 적어 주는 글입니다 |
+| 자리표시 값 | `<real file>`처럼 "여기에 실제 값을 넣으세요"라는 뜻으로 남겨 둔 칸입니다. 검사기는 이것이 남아 있으면 실패합니다 |
+| 이음새(매치 컷, 암전) | 두 샷이 이어지는 곳입니다. 비슷한 두 순간에서 바로 잇는 것이 매치 컷, 잠깐 어두워졌다 밝아지는 것이 암전 전환입니다 |
+| 음량(LUFS) | 소리의 평균 크기를 재는 단위입니다. 이 스킬은 -14 LUFS 안팎을 기본 목표로 삼습니다 |
+| 이미지로 영상(I2V), 참조로 영상(R2V), 글로 영상(T2V) | 영상 서비스가 영상을 만드는 세 방식입니다. 첫 그림을 주는지, 참조 그림을 주는지, 글만 주는지의 차이입니다. 어느 것을 쓸지는 에이전트가 계획에 적습니다 |
 
 **끝나면 무엇이 남나요?** 대본 점검본, 샷 목록, 기준 이미지, 프리비즈 영상, 비용표, 샷별 영상, 소리, 최종 영상, 검수표(무엇을 봤고, 무엇을 쟀고, 무엇을 못 봤는지)입니다.
 
@@ -103,7 +107,7 @@ cp -r scenario-to-film/skills/scenario-to-film ~/.claude/skills/
 4. 비용표(`gen-plan.md`)를 읽고 승인하거나 샷을 줄입니다. **관문 2**입니다(5단계).
 5. 에이전트가 샷마다 생성하고 확인한 뒤 소리를 넣어 조립합니다(6~8단계).
 
-문서와 프레임은 직접 검사해 볼 수 있습니다. 작업 폴더에서 실행하세요.
+문서와 프레임은 직접 검사해 볼 수 있습니다. 아래 명령은 **이 저장소를 받은 폴더(맨 위 폴더)에서** 그대로 실행됩니다. 다른 폴더에서 실행하려면 `skills/...` 부분을 스킬이 있는 실제 위치(예: 플러그인이나 `~/.claude/skills/`에 설치했다면 그 폴더)로 바꾸고, `shots.md`와 `plan.json` 같은 입력 파일은 명령을 실행하는 폴더에 두세요. `python`이 없으면 `python3` 또는 `py`를 쓰고, `pip install pillow numpy`가 필요할 수 있습니다.
 
 ```
 node skills/scenario-to-film/scripts/lint-shots.mjs shots.md --max-seconds 20
@@ -130,7 +134,7 @@ python skills/scenario-to-film/scripts/best-match-cut.py clipA.mp4 clipB.mp4 --a
 ## 알려진 한계
 
 - 68초짜리 단편 한 편을 영상 플랫폼 하나와 Windows 컴퓨터 한 대에서 만들며 시험했습니다. `best-match-cut.py`의 숫자 기준(6배는 자연스럽게 이어졌고 50배는 전혀 다른 장면)은 그 한 편에서 잰 임시 값입니다.
-- 설명서만 보고 따라 하는 새 사용자 시험을 두 번 했습니다. 1차(대본, 샷 목록, 생성 계획)는 5점 만점에 3점, 2차(기준 이미지, 프리비즈, 소리, 조립과 검수)는 단계별 3~4점이었고, 지적받은 부분은 고쳤습니다. 고친 뒤에 새 사용자가 다시 시험해 본 것은 아닙니다. 영상 생성부터 조립까지 실제로 따라 한 사람은 저뿐입니다.
+- 설명서만 보고 따라 하는 새 사용자 시험을 세 번 했습니다. 1차(대본, 샷 목록, 생성 계획)는 5점 만점에 3점, 2차(기준 이미지, 프리비즈, 소리, 조립과 검수)는 단계별 3~4점이었고 지적받은 부분은 고쳤습니다. 3차는 고친 뒤 공개 저장소를 새로 받아 초보자 역할로 했고, 이해하기 4점·따라 하기 3점이었습니다(첫 명령의 실행 위치가 불분명한 점이 가장 컸고 이것도 고쳤습니다). 이 마지막 수정 뒤에 다시 시험해 본 것은 아닙니다. 영상 생성부터 조립까지 실제로 따라 한 사람은 저뿐이고, 프리비즈 제작과 소리 단계는 새 사용자가 시험해 본 적이 없습니다.
 - 플랫폼의 동작(참조 이미지 제한, 모델 이름, 가격)은 바뀝니다. 실제 화면과 다르면 화면을 따르고 `references/recovery.md`를 고쳐 주세요.
 - 소리는 수치 측정과 받아쓰기로만 확인했고 사람이 귀로 듣고 검수한 것이 아닙니다. 게시하기 전에 직접 들어 보세요.
 
@@ -186,6 +190,10 @@ The skill never spends credits, pays, posts or contacts anyone by itself. Every 
 | Gate | A stop where you must say "yes" before the work continues: gate 1 after the previs, gate 2 after the cost table |
 | Credits | The unit (money) a video service charges |
 | Prompt | The text that tells the AI what to make |
+| Placeholder | A value like `<real file>` left to mean "put the real value here". The checker fails while any is left |
+| Cut junction (match cut, dip to black) | Where two shots meet. A match cut joins two near-identical moments directly; a dip to black fades out and back in |
+| Loudness (LUFS) | The unit for average sound level. This skill defaults to about -14 LUFS |
+| I2V, R2V, T2V | The three ways a video service makes a clip: from a first image, from reference images, or from text only. The agent writes which one it uses in the plan |
 
 **What do you end up with?** A reviewed script, a shot list, reference images, a previs video, a cost table, shot clips, sound, the final video and a QA table (what was seen, what was measured, what was not checked).
 
@@ -257,7 +265,7 @@ The agent follows the step table in `SKILL.md`. You do five things:
 4. Read the cost table (`gen-plan.md`) and approve it or cut shots. This is **gate 2** (step 5).
 5. The agent generates shot by shot, checks each clip, adds sound and assembles (steps 6 to 8).
 
-Check the documents and frames yourself, from your working folder:
+Check the documents and frames yourself. The commands below run as written **from the top folder of this repository**. To run them from another folder, replace the `skills/...` part with where the skill actually is (for example the plugin folder or `~/.claude/skills/`), and keep input files such as `shots.md` and `plan.json` in the folder you run from. If `python` is missing use `python3` or `py`, and you may need `pip install pillow numpy`.
 
 ```
 node skills/scenario-to-film/scripts/lint-shots.mjs shots.md --max-seconds 20
@@ -284,7 +292,7 @@ python skills/scenario-to-film/scripts/best-match-cut.py clipA.mp4 clipB.mp4 --a
 ### Known limits
 
 - Tested on one 68-second film, one video platform and one Windows machine. The thresholds in `best-match-cut.py` (about 6x cut cleanly, about 50x was an unrelated shot) come from that one film and are provisional.
-- Two documentation-only trials by fresh users: the first (script, shot list, generation plan) rated 3 of 5; the second (reference stills, previs, sound, assemble and QA) rated 3 to 4 per step. Every point raised was fixed, but no fresh user re-ran the trial after the fixes. Only the author has followed generation through assembly.
+- Three documentation-only trials by fresh users: the first (script, shot list, generation plan) rated 3 of 5; the second (reference stills, previs, sound, assemble and QA) rated 3 to 4 per step, and its points were fixed. The third was a beginner persona on a fresh clone of the public repository: understanding 4 of 5, following along 3 of 5 (the biggest problem was that it was unclear where to run the first command, which is now fixed). Nobody re-ran the trial after that last fix. Only the author has followed generation through assembly, and no fresh user has tried building a previs or the sound step.
 - Platform behavior (reference limits, model names, prices) changes. Follow the live UI and update `references/recovery.md` when it differs.
 - Sound was checked by measurement and transcription, not by a trained listener. Listen before you publish.
 

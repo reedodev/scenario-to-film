@@ -38,6 +38,9 @@ Never spend paid generation credits before gate 2. If a step fails, read
 - Shot length comes from the sound event, not the other way around.
 - Fix identity in the reference still and previs geometry first, in prompt text second.
 - A shot that fails twice is simplified or cut, not retried a third time.
+- Limits the checkers enforce: a shot is at most 10 s, a plan clip is 3-15 s (plan a 2 s shot as a 3 s clip and trim it in the edit), the total may not exceed the film length you set.
+- A prop the story turns on gets its own reference still, like each character and place.
+- Beginners: the README glossary explains the terms used here (previs, gate, I2V/R2V/T2V, LUFS, cut junctions). When the user is new, explain a term in one plain sentence the first time you use it.
 - Previs is judged for story and rhythm. Look (material, light, faces) is left to the video model.
 - Passing a check is not the same as having checked everything. Report what was seen, measured
   and not checked in separate columns.
@@ -63,7 +66,7 @@ Never spend paid generation credits before gate 2. If a step fails, read
 | "Make it vertical 9:16" | Sets `aspect` in the plan and frames for vertical |
 | "Two clips look wrong together" | Runs `scripts/best-match-cut.py`, then picks a hard cut or a dip to black |
 | "Less narration" | Applies the narration rules in `references/assemble-and-polish.md` |
-| "Use the better model for one shot first" | Tests one shot on two models and compares frames and cost |
+| "Compare the better model on one shot first" | Makes one shot on two models and compares frames and cost |
 ## References
 
 - [script-doctor](references/script-doctor.md): paradox, fair reveal, emotion, coverage choices
