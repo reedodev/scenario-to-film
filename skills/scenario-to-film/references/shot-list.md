@@ -61,3 +61,18 @@ When the story needs them together, try in this order: an over-the-shoulder fram
 visible, the other as a shoulder and back), a shared object in the foreground with one person
 behind it, a reflection, or a two-shot kept very short with a locked camera. Plan a spare take
 and say in the notes that this shot is the risky one.
+
+## Keep a state table so props and wardrobe stay consistent
+
+Clips are generated separately, so nothing remembers that a prop was taken off. Write one row per
+shot for every person: what they wear, what is in their ears, hands and pockets, where the light
+comes from. Example failure from the first film: earphones were removed in one shot and were back
+in the ears two shots later, because the later clips were generated from references that still
+showed them. Before generating, mark the shot where each prop appears or leaves, and write
+"no earphones" (or the equivalent) in every later prompt. If the reference still shows the old
+state, crop or redraw it first.
+
+| Shot | Person | Wearing | Ears / hands | Light |
+|---|---|---|---|---|
+| 5 | student | navy jacket, white hood | earphones in | cold window |
+| 6 | student | same | earphones **out** | warm dawn |

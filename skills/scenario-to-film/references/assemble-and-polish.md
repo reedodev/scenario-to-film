@@ -28,6 +28,10 @@ compare with a dip to black; over 25x use a dip to black or restage the shot.
   to confirm the words. Transcription is not listening: say so in the report.
 - A name or place can be misheard by the transcriber (Seoul as Soul). Mark it as "listen here".
 - Do not use the user's own cloned voice unless they ask for it in this task.
+- When one line changes late, re-synthesize that line **and its neighbour from the same pass** so the
+  voice stays the same, then re-time subtitles and every sound placed after it. (In the first film one sentence
+  changed after the mix was done, and the changed line and its neighbour were re-made together in
+  one pass. Whether re-making only the one line would have changed the voice was not tested.)
 
 ## 3. Subtitles
 
@@ -70,6 +74,21 @@ This skill never publishes. When the user has approved it, the checks that were 
 needed once: required hashtags and platform account tags from the contest rules, a custom
 thumbnail that does not cover the face, AI-generated label on, correct channel active in the
 account switcher (switch back afterward), and a pinned comment verified after reload.
+
+When you enter a contest or a creator program:
+
+- Read the entry rules on the live page and write each requirement into `unknowns.md` or the QA
+  table: minimum length, resolution, who must have generated the footage, required hashtag,
+  which official account to tag on each platform, public visibility, deadline and its time zone.
+- Many forms ask you to select the generated clips you used. Select every clip that is in the
+  final film (the first film used 11 of them) and check the count on the confirmation screen.
+- The submitted link must be a public post. Open it logged out, or from another browser, before
+  you submit.
+- Some programs ask you not to mention other AI services in the post. A requirement that is a
+  recommendation, not a rule, is still worth following if it costs you nothing; if you choose not
+  to, say so and accept that the post may not count.
+- A bonus that needs contacting the organizers is the owner's decision. Do not contact anyone
+  unless the owner asks you to.
 
 
 
