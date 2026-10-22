@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/banner.png" alt="scenario-to-film: 대본이 검수를 거쳐 비용을 승인한 뒤에만 영상이 됩니다 · script to film, paid generation only after you approve the cost" width="100%"></p>
+
 # 대본 하나로 만드는 검수된 단편 (scenario-to-film)
 
 [![test](https://github.com/reedodev/scenario-to-film/actions/workflows/test.yml/badge.svg)](https://github.com/reedodev/scenario-to-film/actions/workflows/test.yml)
@@ -10,6 +12,38 @@
 ```
 
 이 스킬은 스스로 크레딧을 쓰거나, 결제하거나, 게시하거나, 누구에게 연락하지 않습니다. 유료 생성과 업로드는 항상 사용자의 승인을 따로 받아야 합니다.
+
+### 처음 오셨나요? 3분 안내
+
+**이 스킬은 무엇을 하나요?** AI 영상은 한 장면을 만들 때마다 돈(크레딧)이 듭니다. 이 스킬은 영상을 만들기 전에 이야기를 점검하고, 값싼 시안으로 먼저 확인하게 하고, 비용표를 사용자가 "좋다"고 해야만 진짜 영상을 만들게 합니다. 만든 뒤에는 소리, 장면 이음새, 최종 파일까지 확인합니다. 개발자가 아니어도 AI 도우미에게 말로 부탁하면 됩니다.
+
+**용어 풀이**
+
+| 말 | 뜻 |
+|---|---|
+| 스킬 | AI 도우미가 읽고 따르는 작업 설명서 폴더(`SKILL.md`)입니다 |
+| Claude Code | 터미널에서 대화하듯 쓰는 AI 코딩 도우미입니다 |
+| 터미널 | Windows는 PowerShell, Mac은 터미널 앱입니다 |
+| Node.js | 스킬 안의 검사 도구를 돌리는 프로그램입니다. 터미널에 `node -v`를 입력해 18 이상이 나오면 됩니다 |
+| 샷(컷) | 끊김 없이 이어지는 영상 한 조각입니다 |
+| 샷 목록 | 샷마다 길이, 카메라, 장소, 소리를 적은 표입니다 |
+| 기준 이미지 | 인물과 장소의 모습을 고정하려고 먼저 만드는 그림입니다 |
+| 프리비즈 | 영상을 만들기 전에 값싼 3D로 카메라와 컷 길이를 미리 보는 시안입니다 |
+| 관문 | 사용자가 "좋다"고 해야 다음으로 넘어가는 멈춤 지점입니다. 시안을 본 뒤가 관문 1, 비용표를 본 뒤가 관문 2입니다 |
+| 크레딧 | 영상 서비스가 받는 사용 단위(돈)입니다 |
+| 지시문(프롬프트) | AI에게 무엇을 만들지 적어 주는 글입니다 |
+
+**끝나면 무엇이 남나요?** 대본 점검본, 샷 목록, 기준 이미지, 프리비즈 영상, 비용표, 샷별 영상, 소리, 최종 영상, 검수표(무엇을 봤고, 무엇을 쟀고, 무엇을 못 봤는지)입니다.
+
+**막혔을 때**
+
+| 증상 | 해결 |
+|---|---|
+| `node`를 찾을 수 없다고 나옵니다 | [nodejs.org](https://nodejs.org)에서 설치하거나 에이전트에게 "node가 있는지 확인해 줘"라고 합니다 |
+| 검사기가 `placeholder left`라며 실패합니다 | `<...>`로 남은 칸을 실제 값으로 바꿉니다. 견본 파일만 `--allow-placeholders`를 붙입니다 |
+| 영상 서비스 화면이 설명과 다릅니다 | 화면을 따르고 `references/recovery.md`를 고쳐 주세요 |
+| 비용이 얼마인지 모릅니다 | 비용표에 "모름"이라고 적고 서비스 화면의 가격을 직접 확인해 적습니다. 추측으로 적지 않습니다 |
+| 영상을 만들다 중간에 멈췄습니다 | 같은 요청을 다시 보내지 말고 서비스의 작업 목록에서 이미 만들어졌는지 먼저 확인합니다(다시 보내면 두 번 결제될 수 있습니다) |
 
 ## 사용 예시
 
@@ -132,6 +166,38 @@ script -> script doctor -> shot list -> reference stills -> previs (gate 1: you 
 ```
 
 The skill never spends credits, pays, posts or contacts anyone by itself. Every paid generation and every upload still needs your own approval.
+
+### New here? A three-minute guide
+
+**What does this skill do?** AI video costs money (credits) for every shot. This skill reviews your story first, has you check a cheap rough version, and only generates real video after you approve a cost table. After generation it checks sound, cut junctions and the final file. You do not need to be a developer: ask your AI assistant in plain language.
+
+**Glossary**
+
+| Term | Meaning |
+|---|---|
+| Skill | A folder of instructions (`SKILL.md`) that your AI assistant reads and follows |
+| Claude Code | An AI coding assistant you talk to inside a terminal |
+| Terminal | PowerShell on Windows, the Terminal app on macOS |
+| Node.js | Runs the checking tools in the skill. Type `node -v`; 18 or higher is fine |
+| Shot (cut) | One continuous piece of video |
+| Shot list | A table with length, camera, place and sound for every shot |
+| Reference image | A still made first to lock how a character or place looks |
+| Previs | A cheap rough 3D version that shows camera moves and cut timing before you pay for video |
+| Gate | A stop where you must say "yes" before the work continues: gate 1 after the previs, gate 2 after the cost table |
+| Credits | The unit (money) a video service charges |
+| Prompt | The text that tells the AI what to make |
+
+**What do you end up with?** A reviewed script, a shot list, reference images, a previs video, a cost table, shot clips, sound, the final video and a QA table (what was seen, what was measured, what was not checked).
+
+**When you get stuck**
+
+| Symptom | Fix |
+|---|---|
+| `node` is not found | Install it from [nodejs.org](https://nodejs.org), or ask the agent "check whether node is installed" |
+| The checker fails with `placeholder left` | Replace every leftover `<...>` with a real value. Only the template file takes `--allow-placeholders` |
+| The video service looks different from the description | Follow the screen and update `references/recovery.md` |
+| You do not know the cost | Write "unknown" in the cost table, read the price on the service's screen and fill it in. Never guess |
+| A generation stopped halfway | Do not resend the same request. Check the service's job list first; a resend can be charged twice |
 
 ### Example
 
