@@ -56,6 +56,20 @@
 - 영상: [EP.01 Last Stop, First Light](https://youtu.be/gEiRXMpBjVU) (장면은 모두 Pollo AI로 만든 AI 영상입니다)
 - 이 영상을 만들며 겪은 실수(비슷한 두 장면을 겹쳤더니 얼굴이 포개진 일, 나레이션이 너무 많았던 일 등)가 [`assemble-and-polish.md`](skills/scenario-to-film/references/assemble-and-polish.md)에 해결법과 함께 들어 있습니다.
 
+### 비슷한 스킬과 무엇이 다른가요?
+
+AI 영상용 스킬은 이미 많습니다. 대표적으로 [DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL)(별 253개, 2026-10-22 확인)은 감독 스타일 20종, 연속성 문서, 실패 유형 19가지, 도구별 지시문 가이드, 시험 사례가 들어 있어 **연출과 지시문 쓰기의 깊이는 이 스킬보다 훨씬 깊습니다.** 영상이 어떻게 보여야 하는지를 정교하게 짜려면 그쪽이 낫습니다.
+
+이 스킬이 다른 점은 영상을 **만드는 과정의 안전장치**입니다. 아래는 제가 그 저장소의 SKILL.md와 README를 읽고 찾지 못한 것을 기준으로 쓴 것이며, 없다고 단정하는 것은 아닙니다.
+
+- 돈이 나가기 전에 사용자가 직접 승인하는 관문 두 번(시안, 비용표)
+- 값싼 3D 시안(프리비즈)으로 카메라와 컷 길이를 먼저 확인
+- 소리 계획, 최종 파일 측정(길이, 음량, 검은 화면)과 "본 것/잰 것/못 본 것" 검수표
+- 계획 파일 검사기와 자동 시험, 공모전 제출과 게시 전 점검
+- 영상 한 편을 실제로 만들며 겪은 실수와 해결법
+
+반대로 이 스킬의 약점도 분명합니다. 실제로 만든 영상은 한 편뿐이고, 연출 깊이는 얕고, 연속성 관리는 표 하나 수준입니다. 연출은 위 스킬, 비용과 검수는 이 스킬처럼 **함께 써도 됩니다.**
+
 ## 무엇이 필요한가요?
 
 | 준비물 | 구분 | 설명 |
@@ -213,6 +227,20 @@ A 68-second AI short made with this skill's steps: a student in Seoul at 2 a.m. 
 
 - Video: [EP.01 Last Stop, First Light](https://youtu.be/gEiRXMpBjVU) (every shot generated with Pollo AI)
 - The mistakes made along the way (dissolving two near-identical shots made faces overlap; too much narration) are in [`assemble-and-polish.md`](skills/scenario-to-film/references/assemble-and-polish.md) with the fixes.
+
+### How is this different from similar skills?
+
+There are already many AI-video skills. [DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL) (253 stars, checked 2026-10-22), for example, ships 20 director-style overlays, a continuity bible, 19 coded failure types, per-tool prompt adapters and evals, so **its depth in directing and prompt writing is far greater than this skill's.** If you want to design how a film should look, use that one.
+
+What this skill adds is **safeguards around the making**. The list below is based on what I did not find in that repository's SKILL.md and README; it is not a claim that it has none.
+
+- Two approval gates before any money is spent (the previs, the cost table)
+- A cheap 3D previs to check camera and cut timing first
+- A sound plan, measurements of the final file (length, loudness, black frames) and a "seen / measured / not checked" QA table
+- Checkers for the plan file with automated tests, plus contest entry and pre-publish checks
+- Mistakes and fixes from actually making one film
+
+The weaknesses are just as clear: only one film has been made with it, the directing depth is shallow, and continuity tracking is a single table. You can use both: that skill for directing, this one for cost control and QA.
 
 ### Requirements
 

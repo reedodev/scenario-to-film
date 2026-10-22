@@ -67,12 +67,13 @@ Never spend paid generation credits before gate 2. If a step fails, read
 | "Two clips look wrong together" | Runs `scripts/best-match-cut.py`, then picks a hard cut or a dip to black |
 | "Less narration" | Applies the narration rules in `references/assemble-and-polish.md` |
 | "Compare the better model on one shot first" | Makes one shot on two models and compares frames and cost |
+
 ## References
 
 - [script-doctor](references/script-doctor.md): paradox, fair reveal, emotion, coverage choices
 - [shot-list](references/shot-list.md): shot rows, generability check, previs critique, lint script
 - [film-look-and-transitions](references/film-look-and-transitions.md): composition, color script, still prompt anatomy, scene transitions
-- [camera-movements](references/camera-movements.md): 46-move library, prompt pattern, choosing a move
+- [camera-movements](references/camera-movements.md): 44-move library, prompt pattern, choosing a move
 - [sources](references/sources.md): saved reference sites with what each is good for
 - [reference-images](references/reference-images.md): human cast, film and ad looks
 - [previs-tools](references/previs-tools.md): CozyClay, Blender, hand-off sheet, prompt grammar
