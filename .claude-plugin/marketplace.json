@@ -1,0 +1,21 @@
+{
+  "owner": {
+    "name": "Reedo"
+  },
+  "plugins": [
+    {
+      "strict": false,
+      "skills": [
+        "./skills/scenario-to-film"
+      ],
+      "source": "./",
+      "description": "Turn one script into a checked short film or ad: script doctor, shot list, previs gate, cost-approved generation plan, sound, assemble and QA. Three checkers included.",
+      "name": "scenario-to-film"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Turn one script into a checked short film or ad: script doctor, shot list, previs gate, cost-approved generation plan, sound, assemble and QA. Three checkers included."
+  },
+  "name": "scenario-to-film"
+}

@@ -1,0 +1,13 @@
+{
+  "settings": { "model": "example-video-model", "resolution": "720p", "aspect": "16:9", "shared_prompt": "", "seed_policy": "fixed per clip" },
+  "sequence_mode": true,
+  "scenes": [
+    { "id": "shop", "name": "Shop at night", "prompt": "Small shop, cold fluorescent light, quiet", "continue_previous": false,
+      "references": { "images": ["refs/clerk.png", "refs/shop.png"], "videos": [], "audios": [] } }
+  ],
+  "clips": [
+    { "scene_id": "shop", "mode": "I2V", "seconds": 5, "seed": 1,
+      "prompt": "@picture_1 stands behind the counter and looks at the door, slow push-in", "first_image": "refs/shop.png",
+      "last_image": "", "use_common_references": true, "refiner": { "mode": "off", "strength": 0, "reference_clip": 0, "reason": "fresh scene start" } }
+  ]
+}

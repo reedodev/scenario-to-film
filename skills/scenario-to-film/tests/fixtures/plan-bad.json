@@ -1,0 +1,5 @@
+{
+  "settings": { "model": "<video model>", "resolution": "720p", "aspect": "16:9" },
+  "scenes": [ { "id": "shop", "name": "Shop", "prompt": "Shop", "references": { "images": ["refs/a.png"], "videos": [], "audios": [] } } ],
+  "clips": [ { "scene_id": "shop", "mode": "R2V", "seconds": 2, "prompt": "@picture_4 waits", "refiner": { "mode": "off" } } ]
+}

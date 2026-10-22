@@ -1,0 +1,32 @@
+{
+  "settings": {
+    "model": "<video model the user approved>",
+    "resolution": "<for example 1080p>",
+    "aspect": "16:9",
+    "shared_prompt": "",
+    "seed_policy": "fixed per clip, record in the cost log"
+  },
+  "sequence_mode": true,
+  "scenes": [
+    {
+      "id": "scene_1",
+      "name": "<place and time>",
+      "prompt": "<static space, light and mood only>",
+      "continue_previous": false,
+      "references": { "images": ["<real file>"], "videos": [], "audios": [] }
+    }
+  ],
+  "clips": [
+    {
+      "scene_id": "scene_1",
+      "mode": "I2V",
+      "seconds": 5,
+      "seed": 1,
+      "prompt": "<who, reference tags, action, eye line, camera move, sound, start and end state>",
+      "first_image": "<real file>",
+      "last_image": "",
+      "use_common_references": true,
+      "refiner": { "mode": "off", "strength": 0, "reference_clip": 0, "reason": "fresh scene start" }
+    }
+  ]
+}
