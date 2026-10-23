@@ -72,7 +72,7 @@
 | Node.js 18 이상 (22에서 시험) | 필수 | `lint-shots.mjs`, `validate-plan.mjs` |
 | Python 3, Pillow, numpy, PATH의 ffmpeg | 권장 | `best-match-cut.py`가 두 장면의 가장 비슷한 순간을 찾고, 최종 파일 측정(길이, 음량, 검은 화면)에도 ffmpeg를 씁니다 |
 | Blender 5.x | 권장 | 프리비즈. 대안은 CozyClay(AGPL, 별도 프로그램) |
-| 영상 모델 계정(직접 비용을 내는 것) | 6단계~ | 관문 2 전에는 아무것도 결제하지 않습니다 |
+| 영상 모델 계정(직접 비용을 내는 것) | 나중에 | 관문 2 전에는 아무것도 결제하지 않습니다 |
 
 스킬이 도구를 스스로 설치하지는 않습니다. 설치하기 전에 이미 동작하는지 먼저 확인합니다.
 
@@ -127,7 +127,7 @@ node skills/scenario-to-film/scripts/validate-plan.mjs plan.json
 python skills/scenario-to-film/scripts/best-match-cut.py clipA.mp4 clipB.mp4 --a-from 3.5
 ```
 
-- `--max-seconds`는 **영화 전체 길이**의 한도입니다. 합계가 넘으면 실패하고 짧으면 통과합니다. 샷 하나는 10초를 넘을 수 없고, 계획의 클립은 3~15초여야 합니다.
+- `--max-seconds`는 **전체 길이**의 한도입니다. 합계가 넘으면 실패하고 짧으면 통과합니다. 샷 하나는 10초를 넘을 수 없고, 계획의 클립은 3~15초여야 합니다.
 - `validate-plan.mjs`는 `<real file>` 같은 자리표시 값이 남아 있으면 실패하고, 계획 옆에 없는 파일은 경고합니다. 견본(`assets/plan-template.json`)은 `--allow-placeholders`를 붙여야 통과합니다.
 - 이 검사들은 문서와 프레임만 봅니다. 얼굴, 움직임, 소리는 판단하지 못하니 결과를 직접 보셔야 합니다.
 
@@ -195,7 +195,8 @@ An agent skill that turns one script into a checked short film or ad. It reviews
 
 ```
 script -> script doctor -> shot list -> reference stills -> previs (gate 1: you watch)
-       -> generation plan + cost (gate 2: you approve) -> generate shot by shot -> sound -> assemble + QA
+       -> generation plan + cost (gate 2: you approve)
+       -> generate shot by shot -> sound -> assemble + QA
 ```
 
 The skill never spends credits, pays, posts or contacts anyone by itself. Every paid generation and every upload still needs your own approval.
@@ -253,7 +254,7 @@ A 68-second AI short made with this skill's steps: a student in Seoul at 2 a.m. 
 | Node.js 18 or newer (tested with 22) | required | `lint-shots.mjs`, `validate-plan.mjs` |
 | Python 3, Pillow, numpy, ffmpeg on PATH | recommended | `best-match-cut.py` finds the best frame pair for a cut; ffmpeg also measures the final file (length, loudness, black frames) |
 | Blender 5.x | recommended | Previs; the alternative is CozyClay (AGPL, separate program) |
-| A video model account you pay for | from step 6 | Nothing paid runs before gate 2 |
+| A video model account you pay for | later | Nothing paid runs before gate 2 |
 
 The skill installs nothing itself. It checks whether a tool already runs before suggesting an install.
 
