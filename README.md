@@ -1,6 +1,10 @@
-<p align="center"><img src="docs/banner.png" alt="scenario-to-film: 대본이 검수를 거쳐 비용을 승인한 뒤에만 영상이 됩니다 · script to film, paid generation only after you approve the cost" width="100%"></p>
+<p align="center"><img src="docs/banner.png" alt="scenario-to-film: 대본이 검수를 거쳐 비용을 승인한 뒤에만 영상이 됩니다 · script to film, paid generation only after you approve the cost" width="100%"></p># scenario-to-film
 
-# 대본 하나로 만드는 검수된 단편 (scenario-to-film)
+[한국어](#한국어) · [English](#english)
+
+## 한국어
+
+**대본 하나로 만드는 검수된 단편**
 
 [![test](https://github.com/reedodev/scenario-to-film/actions/workflows/test.yml/badge.svg)](https://github.com/reedodev/scenario-to-film/actions/workflows/test.yml)
 
@@ -49,40 +53,28 @@
 | 비용이 얼마인지 모릅니다 | 비용표에 "모름"이라고 적고 서비스 화면의 가격을 직접 확인해 적습니다. 추측으로 적지 않습니다 |
 | 영상을 만들다 중간에 멈췄습니다 | 같은 요청을 다시 보내지 말고 서비스의 작업 목록에서 이미 만들어졌는지 먼저 확인합니다(다시 보내면 두 번 결제될 수 있습니다) |
 
-## 사용 예시
+### 사용 예시
 
 이 스킬의 순서대로 만든 68초짜리 AI 단편입니다. 서울의 새벽 2시, 뉴욕을 꿈꾸던 학생이 잠들었다가 새벽 뉴욕의 고가 열차에서 눈을 뜹니다.
 
-- 영상: [EP.01 Last Stop, First Light](https://youtu.be/gEiRXMpBjVU) (장면은 모두 Pollo AI로 만든 AI 영상입니다)
+[![EP.01 Last Stop, First Light: 서울의 새벽 2시에 잠든 학생이 새벽 뉴욕의 열차에서 눈을 뜹니다](docs/example-thumb.jpg)](https://youtu.be/gEiRXMpBjVU)
+
+- 영상: [EP.01 Last Stop, First Light](https://youtu.be/gEiRXMpBjVU) (사진을 누르면 재생됩니다. 장면은 모두 Pollo AI로 만든 AI 영상입니다)
 - 이 영상을 만들며 겪은 실수(비슷한 두 장면을 겹쳤더니 얼굴이 포개진 일, 나레이션이 너무 많았던 일 등)가 [`assemble-and-polish.md`](skills/scenario-to-film/references/assemble-and-polish.md)에 해결법과 함께 들어 있습니다.
 
-### 비슷한 스킬과 무엇이 다른가요?
-
-AI 영상용 스킬은 이미 많습니다. 대표적으로 [DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL)(별 253개, 2026-10-22 확인)은 감독 스타일 20종, 연속성 문서, 실패 유형 19가지, 도구별 지시문 가이드, 시험 사례가 들어 있어 **연출과 지시문 쓰기의 깊이는 이 스킬보다 훨씬 깊습니다.** 영상이 어떻게 보여야 하는지를 정교하게 짜려면 그쪽이 낫습니다.
-
-이 스킬이 다른 점은 영상을 **만드는 과정의 안전장치**입니다. 아래는 제가 그 저장소의 SKILL.md와 README를 읽고 찾지 못한 것을 기준으로 쓴 것이며, 없다고 단정하는 것은 아닙니다.
-
-- 돈이 나가기 전에 사용자가 직접 승인하는 관문 두 번(시안, 비용표)
-- 값싼 3D 시안(프리비즈)으로 카메라와 컷 길이를 먼저 확인
-- 소리 계획, 최종 파일 측정(길이, 음량, 검은 화면)과 "본 것/잰 것/못 본 것" 검수표
-- 계획 파일 검사기와 자동 시험, 공모전 제출과 게시 전 점검
-- 영상 한 편을 실제로 만들며 겪은 실수와 해결법
-
-반대로 이 스킬의 약점도 분명합니다. 실제로 만든 영상은 한 편뿐이고, 연출 깊이는 얕고, 연속성 관리는 표 하나 수준입니다. 연출은 위 스킬, 비용과 검수는 이 스킬처럼 **함께 써도 됩니다.**
-
-## 무엇이 필요한가요?
+### 무엇이 필요한가요?
 
 | 준비물 | 구분 | 설명 |
 |---|---|---|
 | `SKILL.md`를 읽는 에이전트(예: Claude Code)와 이야기 한 줄 | 필수 | 길이, 화면 비율, 등장인물 2~3명 |
-| Node.js 18 이상 (22에서 시험) | 필수(검사기) | `lint-shots.mjs`, `validate-plan.mjs` |
+| Node.js 18 이상 (22에서 시험) | 필수 | `lint-shots.mjs`, `validate-plan.mjs` |
 | Python 3, Pillow, numpy, PATH의 ffmpeg | 권장 | `best-match-cut.py`가 두 장면의 가장 비슷한 순간을 찾고, 최종 파일 측정(길이, 음량, 검은 화면)에도 ffmpeg를 씁니다 |
 | Blender 5.x | 권장 | 프리비즈. 대안은 CozyClay(AGPL, 별도 프로그램) |
-| 영상 모델 계정(직접 비용을 내는 것) | 6단계부터 | 관문 2 전에는 아무것도 결제하지 않습니다 |
+| 영상 모델 계정(직접 비용을 내는 것) | 6단계~ | 관문 2 전에는 아무것도 결제하지 않습니다 |
 
 스킬이 도구를 스스로 설치하지는 않습니다. 설치하기 전에 이미 동작하는지 먼저 확인합니다.
 
-## 바꿔 쓰기: 이렇게 말하세요
+### 바꿔 쓰기: 이렇게 말하세요
 
 | 이렇게 말하면 | 이렇게 바뀝니다 |
 |---|---|
@@ -93,7 +85,7 @@ AI 영상용 스킬은 이미 많습니다. 대표적으로 [DirectorSKILL](http
 | "나레이션은 줄여 줘" | `assemble-and-polish.md`의 나레이션 규칙을 적용합니다 |
 | "좋은 모델로 한 컷만 먼저 비교해 줘" | 한 컷을 두 모델로 만들어 장면과 비용을 나란히 비교합니다 |
 
-## 설치
+### 설치
 
 **Claude Code 플러그인으로 설치**
 
@@ -109,19 +101,23 @@ git clone https://github.com/reedodev/scenario-to-film.git
 cp -r scenario-to-film/skills/scenario-to-film ~/.claude/skills/
 ```
 
-## 바로 해 보기
+### 바로 해 보기
 
 에이전트에게 이렇게 말합니다. "scenario-to-film을 써 줘. 내 이야기는 이렇다: ... 20초, 16:9, 등장인물 2명, 대사 없음."
 
 진행은 `SKILL.md`의 단계 표를 따릅니다. 사용자가 하는 일은 다음 다섯 번입니다.
 
-1. 이야기를 알려 줍니다(1단계).
-2. 대본 점검본(`script-v2.md`)과 샷 목록을 읽습니다(1b, 2단계).
-3. 프리비즈를 보고 고칠 곳을 말합니다. **관문 1**입니다(3, 4단계).
-4. 비용표(`gen-plan.md`)를 읽고 승인하거나 샷을 줄입니다. **관문 2**입니다(5단계).
-5. 에이전트가 샷마다 생성하고 확인한 뒤 소리를 넣어 조립합니다(6~8단계).
+1. 이야기를 알려 줍니다.
+2. 대본 점검본(`script-v2.md`)과 샷 목록을 읽습니다.
+3. 프리비즈를 보고 고칠 곳을 말합니다. **관문 1**입니다.
+4. 비용표(`gen-plan.md`)를 읽고 승인하거나 샷을 줄입니다. **관문 2**입니다.
+5. 에이전트가 샷마다 생성하고 확인한 뒤 소리를 넣어 조립합니다.
 
-문서와 프레임은 직접 검사해 볼 수 있습니다. 아래 명령은 **이 저장소를 받은 폴더(맨 위 폴더)에서** 그대로 실행됩니다. 다른 폴더에서 실행하려면 `skills/...` 부분을 스킬이 있는 실제 위치(예: 플러그인이나 `~/.claude/skills/`에 설치했다면 그 폴더)로 바꾸고, `shots.md`와 `plan.json` 같은 입력 파일은 명령을 실행하는 폴더에 두세요. `python`이 없으면 `python3` 또는 `py`를 쓰고, `pip install pillow numpy`가 필요할 수 있습니다.
+문서와 프레임은 직접 검사해 볼 수 있습니다. 아래 명령을 실행하기 전에 알아 둘 것입니다.
+
+- **실행 위치:** 이 저장소를 받은 폴더(맨 위 폴더)에서 그대로 실행됩니다. 다른 폴더에서 실행하려면 명령의 `skills/...` 부분을 스킬이 있는 실제 위치(플러그인이나 `~/.claude/skills/`에 설치했다면 그 폴더)로 바꾸세요.
+- **입력 파일:** `shots.md`와 `plan.json` 같은 파일은 명령을 실행하는 폴더에 두세요.
+- **python이 없으면:** `python3` 또는 `py`를 쓰고, `pip install pillow numpy`가 필요할 수 있습니다.
 
 ```
 node skills/scenario-to-film/scripts/lint-shots.mjs shots.md --max-seconds 20
@@ -133,7 +129,7 @@ python skills/scenario-to-film/scripts/best-match-cut.py clipA.mp4 clipB.mp4 --a
 - `validate-plan.mjs`는 `<real file>` 같은 자리표시 값이 남아 있으면 실패하고, 계획 옆에 없는 파일은 경고합니다. 견본(`assets/plan-template.json`)은 `--allow-placeholders`를 붙여야 통과합니다.
 - 이 검사들은 문서와 프레임만 봅니다. 얼굴, 움직임, 소리는 판단하지 못하니 결과를 직접 보셔야 합니다.
 
-## 파일
+### 파일
 
 - `skills/scenario-to-film/SKILL.md`: 전체 순서와 핵심 규칙
 - `skills/scenario-to-film/references/`: 대본 점검, 샷 목록, 카메라 움직임, 색감과 전환, 기준 이미지, 프리비즈 도구, 생성 계획, 비용, 소리, 검수, 문제 해결, 조립과 마무리
@@ -141,18 +137,37 @@ python skills/scenario-to-film/scripts/best-match-cut.py clipA.mp4 clipB.mp4 --a
 - `skills/scenario-to-film/scripts/`: 위의 검사 스크립트 세 개
 - `tests/`, `.github/workflows/test.yml`: 시험과 자동 시험
 
-## 시험
+### 시험
 
 `node tests/run.mjs`가 SKILL.md 형식을 검사하고 세 검사기를 예시 파일로 실제 실행합니다. 푸시할 때마다 GitHub Actions가 같은 시험을 돌립니다.
 
-## 알려진 한계
+### 비슷한 스킬과 무엇이 다른가요?
+
+AI 영상용 스킬은 이미 많습니다. 대표적으로 [DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL)(별 253개, 2026-10-22 확인)은 감독 스타일 20종, 연속성 문서, 실패 유형 19가지, 도구별 지시문 가이드, 시험 사례가 들어 있어 **연출과 지시문 쓰기의 깊이는 이 스킬보다 훨씬 깊습니다.** 영상이 어떻게 보여야 하는지를 정교하게 짜려면 그쪽이 낫습니다.
+
+이 스킬이 다른 점은 영상을 **만드는 과정의 안전장치**입니다. 아래는 제가 그 저장소의 SKILL.md와 README를 읽고 찾지 못한 것을 기준으로 쓴 것이며, 없다고 단정하는 것은 아닙니다.
+
+- 돈이 나가기 전에 사용자가 직접 승인하는 관문 두 번(시안, 비용표)
+- 값싼 3D 시안(프리비즈)으로 카메라와 컷 길이를 먼저 확인
+- 소리 계획, 최종 파일 측정(길이, 음량, 검은 화면)과 "본 것/잰 것/못 본 것" 검수표
+- 계획 파일 검사기와 자동 시험, 공모전 제출과 게시 전 점검
+- 영상 한 편을 실제로 만들며 겪은 실수와 해결법
+
+반대로 이 스킬의 약점도 분명합니다. 실제로 만든 영상은 한 편뿐이고, 연출 깊이는 얕고, 연속성 관리는 표 하나 수준입니다. 연출은 위 스킬, 비용과 검수는 이 스킬처럼 **함께 써도 됩니다.**
+
+### 알려진 한계
 
 - 68초짜리 단편 한 편을 영상 플랫폼 하나와 Windows 컴퓨터 한 대에서 만들며 시험했습니다. `best-match-cut.py`의 숫자 기준(6배는 자연스럽게 이어졌고 50배는 전혀 다른 장면)은 그 한 편에서 잰 임시 값입니다.
-- 설명서만 보고 따라 하는 새 사용자 시험을 세 번 했습니다. 1차(대본, 샷 목록, 생성 계획)는 5점 만점에 3점, 2차(기준 이미지, 프리비즈, 소리, 조립과 검수)는 단계별 3~4점이었고 지적받은 부분은 고쳤습니다. 3차는 고친 뒤 공개 저장소를 새로 받아 초보자 역할로 했고, 이해하기 4점·따라 하기 3점이었습니다(첫 명령의 실행 위치가 불분명한 점이 가장 컸고 이것도 고쳤습니다). 이 마지막 수정 뒤에 다시 시험해 본 것은 아닙니다. 영상 생성부터 조립까지 실제로 따라 한 사람은 저뿐이고, 프리비즈 제작과 소리 단계는 새 사용자가 시험해 본 적이 없습니다.
+- 설명서만 보고 따라 하는 새 사용자 시험을 세 번 했습니다.
+  - 1차(대본, 샷 목록, 생성 계획): 5점 만점에 3점.
+  - 2차(기준 이미지, 프리비즈, 소리, 조립과 검수): 단계별 3~4점.
+  - 3차(공개 저장소를 새로 받아 초보자 역할로): 이해하기 4점, 따라 하기 3점. 가장 큰 문제는 첫 명령의 실행 위치가 불분명한 것이었고 고쳤습니다.
+  - 지적받은 부분은 모두 고쳤지만 마지막 수정 뒤에는 다시 시험하지 않았습니다.
+- 영상 생성부터 조립까지 실제로 따라 한 사람은 저뿐입니다. 프리비즈 제작과 소리 단계는 새 사용자가 시험해 본 적이 없습니다.
 - 플랫폼의 동작(참조 이미지 제한, 모델 이름, 가격)은 바뀝니다. 실제 화면과 다르면 화면을 따르고 `references/recovery.md`를 고쳐 주세요.
 - 소리는 수치 측정과 받아쓰기로만 확인했고 사람이 귀로 듣고 검수한 것이 아닙니다. 게시하기 전에 직접 들어 보세요.
 
-## 출처와 영감
+### 출처와 영감
 
 방법의 아이디어를 다음 프로젝트에서 참고했습니다. 코드나 글을 옮기지 않았습니다.
 
@@ -164,7 +179,7 @@ python skills/scenario-to-film/scripts/best-match-cut.py clipA.mp4 clipB.mp4 --a
 
 카메라 움직임과 전환 목록은 `references/sources.md`에 적은 공개 글들을 읽고 직접 요약한 것입니다. ffmpeg, Pillow, numpy는 각자의 라이선스를 따르는 외부 도구입니다.
 
-## 만든 사람
+### 만든 사람
 
 **리도**, AI 좌충우돌 실습 중인 20년차 엔지니어입니다. 영상을 만들어 보며 막힌 부분을 고쳐 가며 이 스킬을 만들었습니다. [YouTube @Reedodev](https://www.youtube.com/@Reedodev) · [Threads @reedo.dev](https://www.threads.com/@reedo.dev) · [GitHub @reedodev](https://github.com/reedodev)
 
@@ -174,7 +189,6 @@ python skills/scenario-to-film/scripts/best-match-cut.py clipA.mp4 clipB.mp4 --a
 
 ## English
 
-# scenario-to-film
 
 An agent skill that turns one script into a checked short film or ad. It reviews the script, builds a shot list and a rough 3D previs, and generates video **only after you approve the cost**. Two approval gates come before any money is spent.
 
@@ -225,32 +239,20 @@ The skill never spends credits, pays, posts or contacts anyone by itself. Every 
 
 A 68-second AI short made with this skill's steps: a student in Seoul at 2 a.m. falls asleep dreaming of New York and wakes on an elevated train at dawn.
 
-- Video: [EP.01 Last Stop, First Light](https://youtu.be/gEiRXMpBjVU) (every shot generated with Pollo AI)
+[![EP.01 Last Stop, First Light: a student in Seoul falls asleep and wakes on a New York train at dawn](docs/example-thumb.jpg)](https://youtu.be/gEiRXMpBjVU)
+
+- Video: [EP.01 Last Stop, First Light](https://youtu.be/gEiRXMpBjVU) (click the picture to play; every shot generated with Pollo AI)
 - The mistakes made along the way (dissolving two near-identical shots made faces overlap; too much narration) are in [`assemble-and-polish.md`](skills/scenario-to-film/references/assemble-and-polish.md) with the fixes.
-
-### How is this different from similar skills?
-
-There are already many AI-video skills. [DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL) (253 stars, checked 2026-10-22), for example, ships 20 director-style overlays, a continuity bible, 19 coded failure types, per-tool prompt adapters and evals, so **its depth in directing and prompt writing is far greater than this skill's.** If you want to design how a film should look, use that one.
-
-What this skill adds is **safeguards around the making**. The list below is based on what I did not find in that repository's SKILL.md and README; it is not a claim that it has none.
-
-- Two approval gates before any money is spent (the previs, the cost table)
-- A cheap 3D previs to check camera and cut timing first
-- A sound plan, measurements of the final file (length, loudness, black frames) and a "seen / measured / not checked" QA table
-- Checkers for the plan file with automated tests, plus contest entry and pre-publish checks
-- Mistakes and fixes from actually making one film
-
-The weaknesses are just as clear: only one film has been made with it, the directing depth is shallow, and continuity tracking is a single table. You can use both: that skill for directing, this one for cost control and QA.
 
 ### Requirements
 
 | Need | Level | Notes |
 |---|---|---|
 | An agent that reads `SKILL.md` (for example Claude Code) and a story idea | required | Length, aspect ratio, 2-3 people |
-| Node.js 18 or newer (tested with 22) | required for the checkers | `lint-shots.mjs`, `validate-plan.mjs` |
+| Node.js 18 or newer (tested with 22) | required | `lint-shots.mjs`, `validate-plan.mjs` |
 | Python 3, Pillow, numpy, ffmpeg on PATH | recommended | `best-match-cut.py` finds the best frame pair for a cut; ffmpeg also measures the final file (length, loudness, black frames) |
 | Blender 5.x | recommended | Previs; the alternative is CozyClay (AGPL, separate program) |
-| A video model account you pay for | optional until step 6 | Nothing paid runs before gate 2 |
+| A video model account you pay for | from step 6 | Nothing paid runs before gate 2 |
 
 The skill installs nothing itself. It checks whether a tool already runs before suggesting an install.
 
@@ -287,13 +289,17 @@ Tell your agent: "Use scenario-to-film. My story: ... 20 seconds, 16:9, two peop
 
 The agent follows the step table in `SKILL.md`. You do five things:
 
-1. Give the story (step 1).
-2. Read the reviewed script (`script-v2.md`) and the shot list (steps 1b and 2).
-3. Watch the previs and say what to change. This is **gate 1** (steps 3 and 4).
-4. Read the cost table (`gen-plan.md`) and approve it or cut shots. This is **gate 2** (step 5).
-5. The agent generates shot by shot, checks each clip, adds sound and assembles (steps 6 to 8).
+1. Give the story.
+2. Read the reviewed script (`script-v2.md`) and the shot list.
+3. Watch the previs and say what to change. This is **gate 1**.
+4. Read the cost table (`gen-plan.md`) and approve it or cut shots. This is **gate 2**.
+5. The agent generates shot by shot, checks each clip, adds sound and assembles.
 
-Check the documents and frames yourself. The commands below run as written **from the top folder of this repository**. To run them from another folder, replace the `skills/...` part with where the skill actually is (for example the plugin folder or `~/.claude/skills/`), and keep input files such as `shots.md` and `plan.json` in the folder you run from. If `python` is missing use `python3` or `py`, and you may need `pip install pillow numpy`.
+Check the documents and frames yourself. Before you run the commands below:
+
+- **Where to run:** they run as written from the top folder of this repository. To run them from another folder, replace the `skills/...` part with where the skill actually is (the plugin folder or `~/.claude/skills/`).
+- **Input files:** keep `shots.md` and `plan.json` in the folder you run from.
+- **If `python` is missing:** use `python3` or `py`; you may need `pip install pillow numpy`.
 
 ```
 node skills/scenario-to-film/scripts/lint-shots.mjs shots.md --max-seconds 20
@@ -317,10 +323,29 @@ python skills/scenario-to-film/scripts/best-match-cut.py clipA.mp4 clipB.mp4 --a
 
 `node tests/run.mjs` lints `SKILL.md` and runs the three checkers on small fixtures. GitHub Actions runs the same test on every push.
 
+### How is this different from similar skills?
+
+There are already many AI-video skills. [DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL) (253 stars, checked 2026-10-22), for example, ships 20 director-style overlays, a continuity bible, 19 coded failure types, per-tool prompt adapters and evals, so **its depth in directing and prompt writing is far greater than this skill's.** If you want to design how a film should look, use that one.
+
+What this skill adds is **safeguards around the making**. The list below is based on what I did not find in that repository's SKILL.md and README; it is not a claim that it has none.
+
+- Two approval gates before any money is spent (the previs, the cost table)
+- A cheap 3D previs to check camera and cut timing first
+- A sound plan, measurements of the final file (length, loudness, black frames) and a "seen / measured / not checked" QA table
+- Checkers for the plan file with automated tests, plus contest entry and pre-publish checks
+- Mistakes and fixes from actually making one film
+
+The weaknesses are just as clear: only one film has been made with it, the directing depth is shallow, and continuity tracking is a single table. You can use both: that skill for directing, this one for cost control and QA.
+
 ### Known limits
 
 - Tested on one 68-second film, one video platform and one Windows machine. The thresholds in `best-match-cut.py` (about 6x cut cleanly, about 50x was an unrelated shot) come from that one film and are provisional.
-- Three documentation-only trials by fresh users: the first (script, shot list, generation plan) rated 3 of 5; the second (reference stills, previs, sound, assemble and QA) rated 3 to 4 per step, and its points were fixed. The third was a beginner persona on a fresh clone of the public repository: understanding 4 of 5, following along 3 of 5 (the biggest problem was that it was unclear where to run the first command, which is now fixed). Nobody re-ran the trial after that last fix. Only the author has followed generation through assembly, and no fresh user has tried building a previs or the sound step.
+- Three documentation-only trials by fresh users:
+  - First (script, shot list, generation plan): 3 of 5.
+  - Second (reference stills, previs, sound, assemble and QA): 3 to 4 per step.
+  - Third (a beginner persona on a fresh clone of the public repository): understanding 4 of 5, following along 3 of 5. The biggest problem was that it was unclear where to run the first command; that is fixed.
+  - Every point raised was fixed, but nobody re-ran the trial after the last fix.
+- Only the author has followed generation through assembly, and no fresh user has tried building a previs or the sound step.
 - Platform behavior (reference limits, model names, prices) changes. Follow the live UI and update `references/recovery.md` when it differs.
 - Sound was checked by measurement and transcription, not by a trained listener. Listen before you publish.
 
