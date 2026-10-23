@@ -1,4 +1,6 @@
-<p align="center"><img src="docs/banner.png" alt="scenario-to-film: 대본이 검수를 거쳐 비용을 승인한 뒤에만 영상이 됩니다 · script to film, paid generation only after you approve the cost" width="100%"></p># scenario-to-film
+<p align="center"><img src="docs/banner.png" alt="scenario-to-film: 대본이 검수를 거쳐 비용을 승인한 뒤에만 영상이 됩니다 · script to film, paid generation only after you approve the cost" width="100%"></p>
+
+# scenario-to-film
 
 [한국어](#한국어) · [English](#english)
 
@@ -188,7 +190,6 @@ AI 영상용 스킬은 이미 많습니다. 대표적으로 [DirectorSKILL](http
 ---
 
 ## English
-
 
 An agent skill that turns one script into a checked short film or ad. It reviews the script, builds a shot list and a rough 3D previs, and generates video **only after you approve the cost**. Two approval gates come before any money is spent.
 
